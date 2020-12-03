@@ -1,0 +1,17 @@
+Structure of the app:
+
+1. Login page:
+    Allow user to login or sign up with their email.
+    Then pass the id and the name of the user to Main page.
+
+2. Main page
+    Receive the id and Name from the Login page
+
+3. Todo List
+    Retrieve the task of the user based on their id
+
+4. Search Friends
+    Search the friends based on the user id and the friends collection in the database
+
+5. Friends
+    Allow user to input the id of their friends to allow them seeing each other tasks

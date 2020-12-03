@@ -1,0 +1,45 @@
+.todo {
+  height: 75vh;
+  border: 1px solid black;
+  width: 75%;
+  margin: auto;
+  margin-top: 50px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.todo_header {
+  display: flex;
+}
+.checkTasks {
+  margin: auto 0 auto auto;
+  width: fit-content;
+}
+
+.container {
+  width: 100%;
+  overflow-y: scroll;
+}
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.task {
+  padding: 0 10px 0 10px;
+  object-fit: contain;
+  max-width: 100%;
+  margin-bottom: 2px;
+  height: fit-content;
+  background-color: burlywood;
+  display: flex;
+
+  align-items: center;
+  justify-items: center;
+
+  border-bottom: 1px solid black;
+}
+.task_btn {
+  margin-right: 0;
+  margin-left: auto;
+}
