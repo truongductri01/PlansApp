@@ -25,6 +25,7 @@ Here are the steps you need to do to connect with your friends:
 
 1.  Ask a friend for his or her **id code**
 2.  Enter the code into the **input field** and **submit**
+> You can put my code for testing the function: zgXe8MGFAdR80GaXdmuwS7lR8q12
 3.  Then click on Tab **Search Friends** and you can see a list of friend where you can click on each of them to review their tasks
 4.  Only friends added by this method can see your tasks
 
