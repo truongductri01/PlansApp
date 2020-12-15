@@ -82,6 +82,16 @@ function SignUp(props) {
           console.log(user);
           userRef.doc(user.user.uid).set({ name: name });
           props.setUid(user.user.uid);
+
+          db.collection("tasks").doc(user.user.uid).set({
+            completed: 0,
+            notCompleted: 0,
+            startingAmount: 5,
+            increment: 5,
+            notCompletedBeforeIncrement: 3,
+            showMoney: true,
+          });
+
           history.push("/main");
         })
         .catch((err) => {
