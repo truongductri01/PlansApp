@@ -9,7 +9,7 @@ function CheckTasks(props) {
   const uid = props?.uid;
   const progressRetrieved = RetrieveProgress(uid);
 
-  console.log("Progress >>", progressRetrieved);
+  // console.log("Progress >>", progressRetrieved);
 
   const handleDelete = () => {
     tasks.forEach((task) => {
@@ -24,7 +24,7 @@ function CheckTasks(props) {
       .update({
         notCompleted: notCompleted + 1,
       });
-    console.log("Not finished");
+    // console.log("Not finished");
   };
 
   const handleComplete = async () => {

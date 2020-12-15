@@ -8,7 +8,6 @@ import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // border: "5px solid black",
     margin: "auto",
     display: "flex",
     flexDirection: "column",
@@ -16,9 +15,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     height: "98vh",
     width: "75%",
+    overflow: "hidden",
   },
   form: {
-    // border: "1px solid black",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -35,10 +34,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   goBack: {
-    marginTop: "30%",
+    marginTop: "50px",
     display: "flex",
     justifyContent: "center",
-    width: "100%",
+    width: "50%",
     "& > *": {
       margin: theme.spacing(1),
     },
@@ -47,37 +46,21 @@ const useStyles = makeStyles((theme) => ({
 
 function SignUp(props) {
   const classes = useStyles();
-  const [userId, setUserId] = useState();
+  const [userEmail, setUserEmail] = useState();
   const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
   const [name, setName] = useState();
   const history = useHistory();
 
-  const userIdInput = (event) => {
-    const value = event.target.value;
-    // console.log("Value >>>", value);
-    setUserId(value);
-  };
-
-  const passwordInput = (event) => {
-    const value = event.target.value;
-    // console.log("Value >>>", value);
-    setPassword(value);
-  };
-  const nameInput = (event) => {
-    const value = event.target.value;
-    // console.log("Value >>>", value);
-    setName(value);
-  };
-
   const SignUp = (event) => {
     event.preventDefault();
-    console.log("Sign Up clicked");
+    // console.log("Sign Up clicked");
     const userRef = db.collection("users");
 
-    if (userId && password) {
+    if (userEmail && password) {
       firebase
         .auth()
-        .createUserWithEmailAndPassword(userId, password)
+        .createUserWithEmailAndPassword(userEmail, password)
         .then((user) => {
           console.log(user);
           userRef.doc(user.user.uid).set({ name: name });
@@ -95,7 +78,6 @@ function SignUp(props) {
           history.push("/main");
         })
         .catch((err) => {
-          // console.error("Error >>>", err);
           alert(err);
         });
     } else {
@@ -108,21 +90,36 @@ function SignUp(props) {
       <form className={classes.form} noValidate autoComplete="off">
         <TextField
           id="standard-basic"
-          label="User id"
-          onChange={userIdInput}
+          label="User Email"
+          onChange={(event) => setUserEmail(event.target.value)}
           required
+          helperText="Example: testing@gmail.com"
         />
         <TextField
           id="standard-basic"
           label="Password"
-          onChange={passwordInput}
+          onChange={(event) => setPassword(event.target.value)}
           required
           type="password"
         />
         <TextField
           id="standard-basic"
+          label="Confirm Password"
+          onChange={(event) => setConfirmPassword(event.target.value)}
+          required
+          type="password"
+          helperText={
+            password && confirmPassword
+              ? confirmPassword !== password
+                ? "Password not matched"
+                : "Matched"
+              : null
+          }
+        />
+        <TextField
+          id="standard-basic"
           label="Display Name"
-          onChange={nameInput}
+          onChange={(event) => setName(event.target.value)}
           required
         />
         <Button
@@ -130,6 +127,9 @@ function SignUp(props) {
           color="primary"
           onClick={SignUp}
           className={classes.signUp}
+          disabled={
+            !(userEmail && password && password === confirmPassword && name)
+          }
         >
           Sign Up
         </Button>

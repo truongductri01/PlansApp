@@ -32,6 +32,7 @@ export default function TasksModal(props) {
 
   const tasks = props?.tasks;
   const numberOfTasks = tasks?.length;
+  const progress = props?.progress;
   //   console.log("Tasks in Task Modal >>>", tasks);
 
   const tasksJSX = tasks?.map((task) => (
@@ -42,6 +43,29 @@ export default function TasksModal(props) {
       </strong>
     </div>
   ));
+
+  const calculateMoney = (nC, sA, iC, nCiC) => {
+    /*
+      nC: notCompleted
+      sA: starting Amount
+      ic: increment
+      nCic */
+    if (nC === 0) {
+      return 0;
+    } else {
+      let money = 0;
+      const remainder = nC % nCiC;
+      const quotient = (nC - remainder) / nCiC;
+      for (let i = 0; i <= quotient; i++) {
+        if (i === quotient) {
+          money = money + (sA + i * iC) * remainder;
+        } else {
+          money += (sA + i * iC) * nCiC;
+        }
+      }
+      return money;
+    }
+  };
 
   return (
     <div>
@@ -61,6 +85,16 @@ export default function TasksModal(props) {
           <div className={classes.paper}>
             <h2 id="transition-modal-title">Tasks of {props?.userName}</h2>
             <p>{`${numberOfTasks} task(s)`}</p>
+            {progress && progress?.showMoney && (
+              <div>
+                <p>{`Money: ${calculateMoney(
+                  progress.notCompleted,
+                  progress.startingAmount,
+                  progress.increment,
+                  progress.notCompletedBeforeIncrement
+                )}`}</p>
+              </div>
+            )}
             {tasksJSX}
           </div>
         </Fade>

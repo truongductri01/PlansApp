@@ -23,8 +23,6 @@ function FriendsDisplay(props) {
   const uid = props.uid;
   const [friends, setFriends] = useState([]);
 
-  console.log("User id >>>", uid);
-
   const deleteFriend = (friendCode, id) => {
     // perform a mutual deletion
     console.log("Id of the doc >>>", id);

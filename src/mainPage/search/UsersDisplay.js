@@ -17,7 +17,7 @@ export default function UserDisplay(props) {
   const classes = useStyles();
   const usersList = props?.usersList;
 
-  console.log("User List >>>", usersList);
+  // console.log("User List >>>", usersList);
 
   const usersJSX = usersList?.map((user) => (
     <ListItem button key={user.friendCode}>

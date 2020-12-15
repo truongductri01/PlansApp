@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import TasksModal from "./TasksModal";
 import retrieveData from "../todo/retrieveData";
+import RetrieveProgress from "../todo/retrieveProgress";
+import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,21 +19,22 @@ function User(props) {
   const uid = props?.uid;
   const userName = props?.userName;
   const [open, setOpen] = useState(false);
+  const progressRetrieved = RetrieveProgress(props?.uid);
+  const [progress, setProgress] = useState(progressRetrieved);
 
-  // console.log("User id in User >>>", uid);
+  // console.log("Progress of", userName, ">>>", progress);
 
+  useEffect(() => {
+    setProgress(progressRetrieved);
+  }, [progressRetrieved]);
   const { tasks } = retrieveData(uid);
-  // console.log("Tasks >>>", tasks);
 
-  // if (uid && userName) {
-  //   console.log("User in User >>>", uid, ">>>", userName);
-  // }
   return (
     <div className={classes.root}>
       <div
         className={classes.root}
         onClick={() => {
-          // console.log("Tasks of the user >>>", tasks); 
+          // console.log("Tasks of the user >>>", tasks);
           setOpen(!open);
         }}
       >
@@ -43,6 +46,7 @@ function User(props) {
           open={open}
           tasks={tasks}
           userName={userName}
+          progress={progress}
         />
       )}
     </div>
