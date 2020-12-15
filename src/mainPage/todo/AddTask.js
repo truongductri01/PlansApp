@@ -9,7 +9,7 @@ import Fade from "@material-ui/core/Fade";
 import TextField from "@material-ui/core/TextField";
 
 // eslint-disable-next-line
-import { db, timestamp } from "../../firebase/useFirebase";
+import { db } from "../../firebase/useFirebase";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -39,22 +39,14 @@ export default function AddTask(props) {
   const [open, setOpen] = React.useState(false);
   const [taskName, setTaskName] = useState("");
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const handleChange = (e) => {
     setTaskName(e.target.value);
-    // console.log("Task >>>", taskName);
   };
 
   const handleSubmit = () => {
     const task = {
       name: taskName,
+      checked: false,
     };
 
     const uid = props.uid;
@@ -63,7 +55,6 @@ export default function AddTask(props) {
     dbRef.add(task);
 
     setTaskName("");
-
     setOpen(false);
   };
   return (
@@ -72,7 +63,7 @@ export default function AddTask(props) {
         variant="contained"
         color="primary"
         className={classes.button}
-        onClick={handleOpen}
+        onClick={() => setOpen(true)}
       >
         New Task
       </Button>
@@ -81,7 +72,7 @@ export default function AddTask(props) {
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={open}
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -93,7 +84,7 @@ export default function AddTask(props) {
             <form className={classes.root} noValidate autoComplete="off">
               <TextField
                 id="standard-basic"
-                label="Standard"
+                label="Task Name"
                 onChange={handleChange}
               />
               <Button
@@ -102,6 +93,7 @@ export default function AddTask(props) {
                 className={classes.button}
                 startIcon={<SaveIcon />}
                 onClick={handleSubmit}
+                disabled={taskName === ""}
               >
                 New Task
               </Button>

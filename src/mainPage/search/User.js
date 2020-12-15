@@ -18,20 +18,20 @@ function User(props) {
   const userName = props?.userName;
   const [open, setOpen] = useState(false);
 
-  console.log("User id in User >>>", uid);
+  // console.log("User id in User >>>", uid);
 
   const { tasks } = retrieveData(uid);
-  console.log("Tasks >>>", tasks);
+  // console.log("Tasks >>>", tasks);
 
-  if (uid && userName) {
-    console.log("User in User >>>", uid, ">>>", userName);
-  }
+  // if (uid && userName) {
+  //   console.log("User in User >>>", uid, ">>>", userName);
+  // }
   return (
     <div className={classes.root}>
       <div
         className={classes.root}
         onClick={() => {
-          console.log("Tasks of the user >>>", tasks);
+          // console.log("Tasks of the user >>>", tasks); 
           setOpen(!open);
         }}
       >

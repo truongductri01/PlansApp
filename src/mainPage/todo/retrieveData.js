@@ -14,16 +14,17 @@ const useFirestore = (uid) => {
         .onSnapshot((snap) => {
           let tasksList = [];
           snap.forEach((doc) => {
-            tasksList.push({ ...doc.data(), id: doc.id });
+            if (doc.data().checked) {
+              tasksList.push({ ...doc.data(), id: doc.id });
+            } else {
+              tasksList.push({ ...doc.data(), id: doc.id, checked: false });
+            }
           });
 
           setTasks(tasksList);
         });
     }
   }, [uid]);
-
-  // Return cards to later renders
-  // console.log("Cards >>>", tasks);
   return { tasks };
 };
 

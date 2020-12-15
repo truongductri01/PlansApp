@@ -63,7 +63,7 @@ export default function Search(props) {
   const uid = props?.uid;
   const [friends, setFriends] = useState([]);
 
-  console.log("User id in search >>>", uid);
+  // console.log("User id in search >>>", uid);
 
   useEffect(() => {
     if (uid) {
@@ -73,7 +73,7 @@ export default function Search(props) {
         .onSnapshot((snap) => {
           let tempList = [];
           snap.forEach((doc) => {
-            console.log("Friends >>>", doc.data());
+            // console.log("Friends >>>", doc.data());
             tempList.push(doc.data());
           });
 
@@ -82,7 +82,7 @@ export default function Search(props) {
     }
   }, [uid]);
 
-  console.log("List of users >>>", friends);
+  // console.log("List of users >>>", friends);
 
   return (
     <div className={classes.root}>

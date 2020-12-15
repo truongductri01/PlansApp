@@ -12,6 +12,7 @@ import { Button } from "@material-ui/core";
 import * as firebase from "firebase";
 import { useHistory } from "react-router";
 import Friends from "./friends/Friends";
+import Header from "./Header";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -49,7 +50,6 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
   },
   logOut: {
     margin: "auto 5px auto auto",
@@ -73,7 +73,7 @@ export default function SimpleTabs(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Tabs
           value={value}
           onChange={handleChange}
@@ -92,15 +92,14 @@ export default function SimpleTabs(props) {
           </Button>
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        <h1>Welcome, {props.userName}</h1>
-        <h4 style={{ float: "right" }}>Your id code: {props.uid}</h4>
+      <TabPanel value={value} index={0} className="fade-in">
+        <Header uid={props.uid} userName={props.userName} />
         <Todo uid={props.uid} userName={props.userName} />
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={1} className="fade-in">
         <Search uid={props.uid} userName={props.userName} />
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={2} className="fade-in">
         <Friends uid={props.uid} userName={props.userName} />
       </TabPanel>
     </div>

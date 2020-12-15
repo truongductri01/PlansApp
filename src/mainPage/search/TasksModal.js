@@ -37,6 +37,9 @@ export default function TasksModal(props) {
   const tasksJSX = tasks?.map((task) => (
     <div className={classes.task} key={task.id}>
       <span>{task.name}</span>
+      <strong style={{ float: "right" }}>
+        {task.checked ? "Done" : "Not Done"}
+      </strong>
     </div>
   ));
 

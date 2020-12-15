@@ -1,12 +1,15 @@
 .todo {
   height: 75vh;
-  border: 1px solid black;
-  width: 75%;
+  width: 85%;
+  border: 2px solid black;
+  height: max-content;
   margin: auto;
   margin-top: 50px;
 
   display: flex;
   flex-direction: column;
+
+  border-radius: 10px;
 }
 
 .todo_header {
@@ -15,22 +18,32 @@
 .checkTasks {
   margin: auto 0 auto auto;
   width: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .container {
   width: 100%;
   overflow-y: scroll;
+  height: 100%;
+  /* border: 1px solid black; */
 }
 .container::-webkit-scrollbar {
   display: none;
 }
 
 .task {
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 3px 5px rgb(63, 52, 52, 0.5);
   padding: 0 10px 0 10px;
   object-fit: contain;
   max-width: 100%;
   margin-bottom: 2px;
   height: fit-content;
+  /* border: 1px solid black; */
   background-color: burlywood;
   display: flex;
 
@@ -42,4 +55,30 @@
 .task_btn {
   margin-right: 0;
   margin-left: auto;
+}
+
+.task_check {
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  border-radius: 100%;
+  margin-right: 10px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.task_check:hover {
+  /* border: 1px solid pink; */
+  transform: scale(1.1);
+}
+.task--checked {
+  opacity: 0.6;
+}
+.task--checked > .task_name {
+  text-decoration: line-through;
+}
+.task--checked > .task_check {
+  content: "v";
 }

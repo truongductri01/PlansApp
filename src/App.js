@@ -35,27 +35,29 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
-        <Switch>
-          <Route path="/main">
-            {uid ? (
-              <MainPage uid={uid} userName={userName} setUid={setUid} />
-            ) : (
-              <Login setUid={setUid} />
-            )}
-          </Route>
-          <Route path="/signup">
-            <SignUp setUid={setUid} />
-          </Route>
-          <Route path="/">
-            {uid ? (
-              <MainPage uid={uid} userName={userName} setUid={setUid} />
-            ) : (
-              <Login setUid={setUid} />
-            )}
-          </Route>
-        </Switch>
-      </Router>
+      <React.StrictMode>
+        <Router>
+          <Switch>
+            <Route path="/main">
+              {uid ? (
+                <MainPage uid={uid} userName={userName} setUid={setUid} />
+              ) : (
+                <Login setUid={setUid} />
+              )}
+            </Route>
+            <Route path="/signup">
+              <SignUp setUid={setUid} />
+            </Route>
+            <Route path="/">
+              {uid ? (
+                <MainPage uid={uid} userName={userName} setUid={setUid} />
+              ) : (
+                <Login setUid={setUid} />
+              )}
+            </Route>
+          </Switch>
+        </Router>
+      </React.StrictMode>
     </div>
   );
 }
