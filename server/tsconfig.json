@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "commonjs",
+    "typeRoots": ["./node_modules/@types"],
+    "moduleResolution": "node"
+  },
+  "exclude": ["node_modules"]
+}
